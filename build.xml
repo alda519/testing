@@ -1,0 +1,27 @@
+<project name="Tesla" default="build" basedir=".">
+	<description>
+		Getting started with Jenking, ant and TestNG...
+	</description>
+
+	<property name="src" location="src"/>
+	<property name="dest" location="build"/>
+
+	<!-- classpath -->
+	<path id="cp">
+		<pathelement location="lib/testng.jar"/>
+		<pathelement location="${dest}"/>
+	</path>
+
+	<!-- build project -->
+	<target name="build">
+		<javac srcdir="${src}" destdir="${dest}" classpathref="cp"/>
+	</target>
+
+	<!-- run tests -->
+	<taskdef name="testng" classpathref="cp" classname="org.testng.TestNGAntTask" />
+	<target name="testsuite">
+		<testng classpathref="cp">
+			<classfileset dir="${dest}" includes="*/*.class"/>
+		</testng>
+	</target>
+</project>
